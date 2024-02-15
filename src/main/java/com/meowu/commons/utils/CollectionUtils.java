@@ -22,6 +22,10 @@ public class CollectionUtils{
         return org.apache.commons.collections4.CollectionUtils.isNotEmpty(collection);
     }
 
+    public static boolean isCollection(Object object){
+        return object != null && object instanceof Collection;
+    }
+
     public static <T> List<T> emptyList(){
         return Lists.newArrayList();
     }

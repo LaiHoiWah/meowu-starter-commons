@@ -82,6 +82,10 @@ public class ArrayUtils{
         return org.apache.commons.lang3.ArrayUtils.isNotEmpty(array);
     }
 
+    public static boolean isArray(Object object){
+        return object != null && object.getClass().isArray();
+    }
+
     public static <T> List<T> toList(T[] array){
         if(array == null){
             return null;

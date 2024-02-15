@@ -123,6 +123,14 @@ public class StringUtils{
         return isEmpty(str) ? org.apache.commons.lang3.StringUtils.EMPTY : org.apache.commons.lang3.StringUtils.abbreviate(str, abbrevMarker, maxWidth);
     }
 
+    public static String isNotBlankOrDefault(String str, String defaultValue){
+        return isNotBlank(str) ? str : defaultValue;
+    }
+
+    public static String isNotBlankOrDefaultSafety(String str, String defaultValue){
+        return isNotBlankOrDefault(str, defaultValue != null ? defaultValue : emptyString());
+    }
+
     public static boolean isBlank(String str){
         return org.apache.commons.lang3.StringUtils.isBlank(str);
     }
