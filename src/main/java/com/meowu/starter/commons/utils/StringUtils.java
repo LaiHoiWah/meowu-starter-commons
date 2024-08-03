@@ -1,5 +1,10 @@
 package com.meowu.starter.commons.utils;
 
+import com.google.common.base.CaseFormat;
+
+import java.util.Arrays;
+import java.util.Collection;
+
 /**
  * Suggest using this util instead of org.apache.commons.lang3.StringUtils
  */
@@ -17,7 +22,7 @@ public class StringUtils{
     }
 
     public static boolean isNotBlank(final CharSequence cs){
-        return org.apache.commons.lang3.StringUtils.isNotBlank(cs);
+        return !isBlank(cs);
     }
 
     public static String trim(final String str){
@@ -40,5 +45,56 @@ public class StringUtils{
         }
 
         return str.substring(start, length);
+    }
+
+    public static String strip(final String str){
+        return org.apache.commons.lang3.StringUtils.strip(str);
+    }
+
+    public static String stripAnyWhitespace(final String str){
+        if(str == null){
+            return null;
+        }
+
+        // result
+        StringBuilder builder = new StringBuilder();
+
+        // loop
+        char[] chars = str.toCharArray();
+        for(char c : chars){
+            if(!Character.isWhitespace(c)){
+                builder.append(c);
+            }
+        }
+
+        return builder.toString();
+    }
+
+    public static String upperCase(final String str){
+        return isBlank(str) ? str : str.toUpperCase();
+    }
+
+    public static String lowerCase(final String str){
+        return isBlank(str) ? str : str.toLowerCase();
+    }
+
+    public static String underscoreToCamelCase(final String str){
+        return isBlank(str) ? str : CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, str);
+    }
+
+    public static String camelToUnderscoreCase(final String str){
+        return isBlank(str) ? str : CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, str);
+    }
+
+    public static String capitalize(final String str){
+        return org.apache.commons.lang3.StringUtils.capitalize(str);
+    }
+
+    public static String uncapitalize(final String str){
+        return org.apache.commons.lang3.StringUtils.uncapitalize(str);
+    }
+
+    public static String join(Iterable<?> iterable, String separator){
+        return org.apache.commons.lang3.StringUtils.join(iterable, separator);
     }
 }

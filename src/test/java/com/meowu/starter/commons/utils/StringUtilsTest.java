@@ -31,4 +31,41 @@ public class StringUtilsTest{
         Assertions.assertEquals(compare, StringUtils.trim("Test "));
         Assertions.assertEquals(compare, StringUtils.trim(" Test "));
     }
+
+    @Test
+    public void strip(){
+        String compare = "Test";
+
+        Assertions.assertEquals(compare, StringUtils.strip(" Test"));
+        Assertions.assertEquals(compare, StringUtils.strip("Test "));
+        Assertions.assertEquals(compare, StringUtils.strip(" Test "));
+    }
+
+    @Test
+    public void stripAnyWhitespace(){
+        String compare = "Test";
+
+        Assertions.assertEquals(compare, StringUtils.stripAnyWhitespace(" Test"));
+        Assertions.assertEquals(compare, StringUtils.stripAnyWhitespace("Test "));
+        Assertions.assertEquals(compare, StringUtils.stripAnyWhitespace(" Test "));
+        Assertions.assertEquals(compare, StringUtils.stripAnyWhitespace(" T e s t "));
+    }
+
+    @Test
+    public void underscoreToCamelCase(){
+       String compare = "camelCase";
+
+       Assertions.assertEquals(compare, StringUtils.underscoreToCamelCase("camel_case"));
+       Assertions.assertEquals(compare, StringUtils.underscoreToCamelCase("Camel_Case"));
+       Assertions.assertEquals("camelACase", StringUtils.underscoreToCamelCase("Camel_A_Case"));
+    }
+
+    @Test
+    public void camelToUnderscoreCase(){
+        String compare = "camel_case";
+
+        Assertions.assertEquals(compare, StringUtils.camelToUnderscoreCase("camelCase"));
+        Assertions.assertEquals(compare, StringUtils.camelToUnderscoreCase("CamelCase"));
+        Assertions.assertEquals("camel_a_case", StringUtils.camelToUnderscoreCase("CamelACase"));
+    }
 }
