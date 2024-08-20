@@ -2,7 +2,7 @@ package com.meowu.starter.commons.domain;
 
 import java.util.Date;
 
-public interface Create {
+public interface Create{
 
     Date getCreateTime();
 

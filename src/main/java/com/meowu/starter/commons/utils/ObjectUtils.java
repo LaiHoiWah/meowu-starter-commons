@@ -27,4 +27,8 @@ public class ObjectUtils{
         // to object
         return (T) GsonUtils.fromJson(json, classOf);
     }
+
+    public static String toString(Object o){
+        return o == null ? StringUtils.EMPTY : o.toString();
+    }
 }

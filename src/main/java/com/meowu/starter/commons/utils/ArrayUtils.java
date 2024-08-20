@@ -1,8 +1,7 @@
 package com.meowu.starter.commons.utils;
 
-/**
- * Suggest using this util instead of org.apache.commons.lang3.ArrayUtils
- */
+import java.lang.reflect.Array;
+
 public class ArrayUtils{
 
     private ArrayUtils(){
@@ -10,10 +9,14 @@ public class ArrayUtils{
     }
 
     public static <T> boolean isEmpty(T[] array){
-        return org.apache.commons.lang3.ArrayUtils.isEmpty(array);
+        return length(array) == 0;
     }
 
     public static <T> boolean isNotEmpty(T[] array){
         return !isEmpty(array);
+    }
+
+    public static int length(final Object array){
+        return array == null ? 0 : Array.getLength(array);
     }
 }

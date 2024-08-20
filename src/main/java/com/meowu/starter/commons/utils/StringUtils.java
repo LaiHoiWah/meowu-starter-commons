@@ -2,41 +2,45 @@ package com.meowu.starter.commons.utils;
 
 import com.google.common.base.CaseFormat;
 
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.Iterator;
+import java.util.StringJoiner;
 
-/**
- * Suggest using this util instead of org.apache.commons.lang3.StringUtils
- */
 public class StringUtils{
 
-    public static final String EMPTY = org.apache.commons.lang3.StringUtils.EMPTY;
-    public static final String SPACE = org.apache.commons.lang3.StringUtils.SPACE;
+    public static final String EMPTY = "";
+    public static final String SPACE = " ";
 
     private StringUtils(){
         throw new IllegalStateException("Instantiation is not allowed");
     }
 
     public static boolean isBlank(final CharSequence cs){
-        return org.apache.commons.lang3.StringUtils.isBlank(cs);
+        int length = length(cs);
+
+        if(length == 0){
+            return true;
+        }
+
+        for(int i = 0; i < length; i++){
+            if(!Character.isWhitespace(cs.charAt(i))){
+                return false;
+            }
+        }
+        return true;
     }
 
     public static boolean isNotBlank(final CharSequence cs){
         return !isBlank(cs);
     }
 
-    public static String trim(final String str){
-        if(str == null){
-            return null;
+    public static String strip(final String str){
+        int length = length(str);
+
+        if(length == 0){
+            return str;
         }
 
-        if(isBlank(str)){
-            return EMPTY;
-        }
-
-        int length = str.length();
         int start  = 0;
-
         while(start < length && Character.isWhitespace(str.charAt(start))){
             start++;
         }
@@ -47,21 +51,18 @@ public class StringUtils{
         return str.substring(start, length);
     }
 
-    public static String strip(final String str){
-        return org.apache.commons.lang3.StringUtils.strip(str);
-    }
-
     public static String stripAnyWhitespace(final String str){
-        if(str == null){
-            return null;
+        int length = length(str);
+
+        if(length == 0){
+            return str;
         }
 
         // result
         StringBuilder builder = new StringBuilder();
-
         // loop
-        char[] chars = str.toCharArray();
-        for(char c : chars){
+        for(int i = 0; i < length; i++){
+            char c = str.charAt(i);
             if(!Character.isWhitespace(c)){
                 builder.append(c);
             }
@@ -87,14 +88,56 @@ public class StringUtils{
     }
 
     public static String capitalize(final String str){
-        return org.apache.commons.lang3.StringUtils.capitalize(str);
+        int length = length(str);
+
+        if(length == 0){
+            return str;
+        }
+
+        char[] chars = str.toCharArray();
+        chars[0] = Character.toTitleCase(chars[0]);
+
+        return new String(chars);
     }
 
     public static String uncapitalize(final String str){
-        return org.apache.commons.lang3.StringUtils.uncapitalize(str);
+        int length = length(str);
+
+        if(length == 0){
+            return str;
+        }
+
+        char[] chars = str.toCharArray();
+        chars[0] = Character.toLowerCase(chars[0]);
+
+        return new String(chars);
     }
 
     public static String join(Iterable<?> iterable, String separator){
-        return org.apache.commons.lang3.StringUtils.join(iterable, separator);
+        if(iterable == null){
+            return null;
+        }
+
+        Iterator<?> iterator = iterable.iterator();
+        if(!iterator.hasNext()){
+            return EMPTY;
+        }
+
+        StringJoiner stringJoiner = new StringJoiner(separator);
+        stringJoiner.setEmptyValue(EMPTY);
+        while(iterator.hasNext()){
+            Object o = iterator.next();
+            stringJoiner.add(toStringOrEmpty(o));
+        }
+
+        return stringJoiner.toString();
+    }
+
+    public static int length(final CharSequence cs){
+        return cs == null ? 0 : cs.length();
+    }
+
+    public static String toStringOrEmpty(final Object o){
+        return ObjectUtils.toString(o);
     }
 }

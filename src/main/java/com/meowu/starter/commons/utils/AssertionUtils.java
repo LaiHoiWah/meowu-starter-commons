@@ -1,5 +1,7 @@
 package com.meowu.starter.commons.utils;
 
+import java.util.Collection;
+
 public class AssertionUtils{
 
     private AssertionUtils(){
@@ -8,6 +10,18 @@ public class AssertionUtils{
 
     public static void notNull(Object o, String message){
         if(ObjectUtils.isNull(o)){
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    public static void notBlank(String s, String message){
+        if(StringUtils.isBlank(s)){
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    public static void notEmpty(Collection<?> collection, String message){
+        if(CollectionUtils.isEmpty(collection)){
             throw new IllegalArgumentException(message);
         }
     }

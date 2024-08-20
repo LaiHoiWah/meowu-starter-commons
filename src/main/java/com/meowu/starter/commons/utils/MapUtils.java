@@ -9,10 +9,14 @@ public class MapUtils{
     }
 
     public static boolean isEmpty(Map<?, ?> map){
-        return map == null || map.isEmpty();
+        return size(map) == 0;
     }
 
     public static boolean isNotEmpty(Map<?, ?> map){
         return !isEmpty(map);
+    }
+
+    public static int size(Map<?, ?> map){
+        return map == null ? 0 : map.size();
     }
 }
