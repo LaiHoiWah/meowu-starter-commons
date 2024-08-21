@@ -22,10 +22,8 @@ public class VersionUtils{
             return -1;
         }else if(target == null){
             return 1;
-        }else if(compare.equals(target)){
-            return 0;
         }else{
-            return compare < target ? -1 : 1;
+            return Integer.compare(compare, target);
         }
     }
 
@@ -45,10 +43,8 @@ public class VersionUtils{
             return -1;
         }else if(target == null){
             return 1;
-        }else if(compare.equals(target)){
-            return 0;
         }else{
-            return compare < target ? -1 : 1;
+            return Long.compare(compare, target);
         }
     }
 
@@ -68,10 +64,8 @@ public class VersionUtils{
             return -1;
         }else if(target == null){
             return 1;
-        }else if(compare.equals(target)){
-            return 0;
         }else{
-            return compare < target ? -1 : 1;
+            return Float.compare(compare, target);
         }
     }
 
@@ -91,10 +85,8 @@ public class VersionUtils{
             return -1;
         }else if(target == null){
             return 1;
-        }else if(compare.equals(target)){
-            return 0;
         }else{
-            return compare < target ? -1 : 1;
+            return Double.compare(compare, target);
         }
     }
 
@@ -108,8 +100,6 @@ public class VersionUtils{
             return -1;
         }else if(StringUtils.isBlank(target)){
             return 1;
-        }else if(compare.equals(target)){
-            return 0;
         }else{
             int compareLength = StringUtils.length(compare);
             int targetLength  = StringUtils.length(target);
