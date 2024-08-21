@@ -90,4 +90,18 @@ public class StringUtilsTest{
 
         Assertions.assertEquals(compare, StringUtils.join(collection, ","));
     }
+
+    @Test
+    public void equals(){
+        Assertions.assertTrue(StringUtils.equals(null, null));
+        Assertions.assertTrue(StringUtils.equals("abc", "abc"));
+        Assertions.assertTrue(StringUtils.equals(" abc", " abc"));
+        Assertions.assertTrue(StringUtils.equals(" abc ", " abc "));
+        Assertions.assertFalse(StringUtils.equals("abc", "abcd"));
+        Assertions.assertFalse(StringUtils.equals("abe", "abcd"));
+        Assertions.assertFalse(StringUtils.equals("abcd", "abc"));
+        Assertions.assertFalse(StringUtils.equals("abcd", "abe"));
+        Assertions.assertFalse(StringUtils.equals(null, "abc"));
+        Assertions.assertFalse(StringUtils.equals("abc", null));
+    }
 }

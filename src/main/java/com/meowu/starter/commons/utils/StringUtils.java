@@ -140,4 +140,25 @@ public class StringUtils{
     public static String toStringOrEmpty(final Object o){
         return ObjectUtils.toString(o);
     }
+
+    public static boolean equals(String compare, String target){
+        // both are null
+        if(compare == null && target == null){
+            return true;
+        }
+        // one is null
+        if(compare == null || target == null){
+            return false;
+        }
+
+        int compareLength = length(compare);
+        int targetLength  = length(target);
+        int equals        = 0;
+
+        for(int i = 0; i < compareLength; i++){
+            equals |= (i >= targetLength ? 1 : compare.charAt(i) ^ target.charAt(i));
+        }
+
+        return equals == 0 && compareLength == targetLength;
+    }
 }
