@@ -1,5 +1,6 @@
 package com.meowu.starter.commons.security.domain;
 
+import com.meowu.starter.commons.security.constants.ResponseCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,6 +22,17 @@ public class Response<T>{
 
     public Response(Integer code, String message){
         this.code    = code;
+        this.message = message;
+    }
+
+    public Response(T data){
+        this.data = data;
+        this.code = ResponseCode.SUCCESS;
+    }
+
+    public Response(T data, String message){
+        this.data    = data;
+        this.code    = ResponseCode.SUCCESS;
         this.message = message;
     }
 

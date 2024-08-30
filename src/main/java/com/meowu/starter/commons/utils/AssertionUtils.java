@@ -25,4 +25,16 @@ public class AssertionUtils{
             throw new IllegalArgumentException(message);
         }
     }
+
+    public static <T> void notEmpty(T[] array, String message){
+        if(ArrayUtils.isEmpty(array)){
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    public static void isTrue(boolean expression, String message){
+        if(!expression){
+            throw new IllegalArgumentException(message);
+        }
+    }
 }

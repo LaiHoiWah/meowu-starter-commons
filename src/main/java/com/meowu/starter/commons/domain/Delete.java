@@ -7,8 +7,4 @@ public interface Delete{
     Date getDeleteTime();
 
     void setDeleteTime(Date deleteTime);
-
-    Boolean getDelete();
-
-    void setDelete(Boolean delete);
 }
