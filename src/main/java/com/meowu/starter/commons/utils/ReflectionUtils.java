@@ -27,7 +27,7 @@ public class ReflectionUtils{
             // get method
             Method method = function.getClass().getDeclaredMethod("writeReplace");
             // set access
-            method.setAccessible(true);
+//            method.setAccessible(true);
 
             // get serialized lambda
             SerializedLambda lambda = (SerializedLambda) method.invoke(function);
