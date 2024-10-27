@@ -1,34 +1,20 @@
 package com.meowu.starter.commons.utils;
 
-import com.google.gson.*;
-
-import java.lang.reflect.Type;
-import java.text.DateFormat;
-import java.util.Date;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.ToNumberPolicy;
+import com.meowu.starter.commons.domain.TypeAdapter;
 
 public class GsonUtils{
-
-    public static final Gson DEFAULT = createGson(true, true, true);
 
     private GsonUtils(){
         throw new IllegalStateException("Instantiation is not allowed");
     }
 
-    public static String toJson(Object o){
-        return DEFAULT.toJson(o);
-    }
-
-    public static <T> T fromJson(String json, Class<T> classOf){
-        return DEFAULT.fromJson(json, classOf);
-    }
-
-    public static <T> T fromJson(String json, Type typeOf){
-        return DEFAULT.fromJson(json, typeOf);
-    }
-
-    public static Gson createGson(boolean serializeNulls, boolean disableHtmlEscaping, boolean timestamp){
+    public static Gson createGson(boolean serializeNulls, boolean disableHtmlEscaping, TypeAdapter<?>... adapters){
         GsonBuilder builder = new GsonBuilder();
         builder.setObjectToNumberStrategy(ToNumberPolicy.LONG_OR_DOUBLE);
+
         // setting
         if(serializeNulls){
             builder.serializeNulls();
@@ -36,23 +22,12 @@ public class GsonUtils{
         if(disableHtmlEscaping){
             builder.disableHtmlEscaping();
         }
-        if(timestamp){
-            builder.registerTypeAdapter(Date.class, new DateTypeAdapter());
+        if(ArrayUtils.isNotEmpty(adapters)){
+            for(TypeAdapter<?> adapter : adapters){
+                builder.registerTypeAdapter(adapter.getType(), adapter);
+            }
         }
 
         return builder.create();
-    }
-
-    private static class DateTypeAdapter implements JsonSerializer<Date>, JsonDeserializer<Date>{
-
-        @Override
-        public JsonElement serialize(Date date, Type type, JsonSerializationContext jsonSerializationContext){
-            return date == null ? null : new JsonPrimitive(date.getTime());
-        }
-
-        @Override
-        public Date deserialize(JsonElement element, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException{
-            return new Date(element.getAsJsonPrimitive().getAsLong());
-        }
     }
 }

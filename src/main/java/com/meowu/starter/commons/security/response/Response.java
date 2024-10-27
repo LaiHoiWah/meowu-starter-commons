@@ -1,4 +1,4 @@
-package com.meowu.starter.commons.security.domain;
+package com.meowu.starter.commons.security.response;
 
 import com.meowu.starter.commons.security.constants.ResponseCode;
 import lombok.Getter;
