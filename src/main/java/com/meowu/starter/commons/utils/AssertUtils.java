@@ -40,7 +40,7 @@ public class AssertUtils{
     }
 
     public static void isNotNull(Object object, String message){
-        if(Objects.nonNull(object)){
+        if(Objects.isNull(object)){
             throw new IllegalArgumentException(message);
         }
     }
