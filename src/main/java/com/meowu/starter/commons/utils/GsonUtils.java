@@ -2,9 +2,7 @@ package com.meowu.starter.commons.utils;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.ToNumberPolicy;
-import com.meowu.starter.entity.adapter.gson.DateAdapter;
-import com.meowu.starter.entity.adapter.gson.RecordStatusAdapter;
-import com.meowu.starter.entity.adapter.gson.TypeAdapter;
+import com.meowu.starter.entity.adapter.gson.*;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Objects;
@@ -18,7 +16,7 @@ public class GsonUtils{
 
     public static GsonBuilder getBuilder(){
         TypeAdapter<?>[] adapters = new TypeAdapter<?>[]{
-            new DateAdapter(), new RecordStatusAdapter()
+            new DateAdapter(), new RecordStatusAdapter(), new SeverityLevelAdapter(), new LocaleAdapter()
         };
 
         return getBuilder(true, true, adapters);

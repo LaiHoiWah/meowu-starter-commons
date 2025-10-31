@@ -44,6 +44,12 @@
             <artifactId>gson</artifactId>
         </dependency>
 
+        <!-- user agent -->
+        <dependency>
+            <groupId>eu.bitwalker</groupId>
+            <artifactId>UserAgentUtils</artifactId>
+        </dependency>
+
         <!-- meowu -->
         <dependency>
             <groupId>com.meowu.starter</groupId>
