@@ -1,14 +1,11 @@
 package com.meowu.starter.commons.utils;
 
-import java.util.function.Function;
-import java.util.function.Supplier;
-
-public class Timer{
+public class TimerUtils{
 
     private long startTime;
     private long endTime;
 
-    public Timer(){
+    public TimerUtils(){
         this.startTime = 0;
         this.endTime = 0;
     }
